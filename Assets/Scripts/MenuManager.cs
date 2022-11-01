@@ -167,16 +167,20 @@ public class MenuManager : MonoBehaviour
 
     private void InitPreferences()
     {
+        Transform contentTransform = transform.Find("Scroll View").Find("Viewport").Find("Content");
+
         float offset = _preferencePrefab.GetComponent<RectTransform>().rect.height;
 
         for (int i = 0; i < _preferences.Count; i++)
         {
             MenuPref pref = _preferences[i];
-            pref.Create(_preferencePrefab, transform, i * offset);
+            pref.Create(_preferencePrefab, contentTransform, (i * offset) - 70);
 
             GameObject prefab = GetPrefabByPrefType(_preferences[i].type);
             pref.AddPref(prefab);
         }
+
+        contentTransform.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, offset * _preferences.Count);
 
         LoadPreferences();
     }
@@ -194,20 +198,20 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    private void OnValidate()
-    {
-        float height = _preferencePrefab.GetComponent<RectTransform>().rect.height;
-        float totalHeight = 0;
+    //private void OnValidate()
+    //{
+    //    float height = _preferencePrefab.GetComponent<RectTransform>().rect.height;
+    //    float totalHeight = 0;
 
-        for (int i = 0; i < _preferences.Count; i++)
-        {
-            totalHeight += height;
-            if (totalHeight > MaxPreferencesHeight)
-            {
-                _preferences.RemoveRange(i, _preferences.Count - i);
-                Debug.LogWarning("Max preferences reached - adjust preference prefab height to add more preferences");
-                break;
-            }
-        }
-    }
+    //    for (int i = 0; i < _preferences.Count; i++)
+    //    {
+    //        totalHeight += height;
+    //        if (totalHeight > MaxPreferencesHeight)
+    //        {
+    //            _preferences.RemoveRange(i, _preferences.Count - i);
+    //            Debug.LogWarning("Max preferences reached - adjust preference prefab height to add more preferences");
+    //            break;
+    //        }
+    //    }
+    //}
 }
