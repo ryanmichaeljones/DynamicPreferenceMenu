@@ -9,9 +9,6 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    //add scrollview
-    //add reset to default pop up - are you sure?
-
     [Serializable]
     public class MenuPref
     {
@@ -41,7 +38,11 @@ public class MenuManager : MonoBehaviour
             Transform parent = _pref.GetComponentsInChildren<RectTransform>().Single(rt => rt.name == "Pref").transform;
             Instantiate(prefab, parent);
 
-            //Init
+            LoadDefaultValues();
+        }
+
+        private void LoadDefaultValues()
+        {
             switch (type)
             {
                 case PrefType.Toggle:
@@ -90,23 +91,6 @@ public class MenuManager : MonoBehaviour
                         throw new ArgumentException("Pref type is invalid or not implemented");
                 }
             }
-            //else 
-            //{
-            //    switch (type)
-            //    {
-            //        case PrefType.Toggle:
-            //            _pref.GetComponentInChildren<Toggle>().isOn = defaultValueToggle;
-            //            break;
-            //        case PrefType.InputField:
-            //            _pref.GetComponentInChildren<TMP_InputField>().text = defaultValueInputField;
-            //            break;
-            //        case PrefType.Slider:
-            //            _pref.GetComponentInChildren<Slider>().value = defaultValueSlider;
-            //            break;
-            //        default:
-            //            throw new ArgumentException("Pref type is invalid or not implemented");
-            //    }
-            //}
         }
     }
 
@@ -120,8 +104,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Button _clearButton;
     [SerializeField] private Button _closeButton;
 
-    private const int MaxPreferencesHeight = 360;
-
     private void Start()
     {
         InitPreferences();
@@ -132,7 +114,6 @@ public class MenuManager : MonoBehaviour
     {
         _confirmButton.onClick.AddListener(SavePreferences);
         _clearButton.onClick.AddListener(ClearPreferences);
-        //_closeButton.onClick.AddListener(Close);
     }
 
     private void LoadPreferences()
@@ -155,6 +136,8 @@ public class MenuManager : MonoBehaviour
 
     private void ClearPreferences()
     {
+        //add "Are you sure you want to reset preferences to default?" popup
+
         foreach (MenuPref pref in _preferences)
         {
             PlayerPrefs.DeleteKey(pref.name);
@@ -193,25 +176,14 @@ public class MenuManager : MonoBehaviour
         _ => throw new ArgumentException("Pref type is invalid or not implemented"),
     };
 
-    private void Update()
+    private void OnValidate()
     {
-        
+        foreach (var preference in _preferences)
+        {
+            if (_preferences.Count(p => p.name == preference.name) > 1)
+            {
+                Debug.LogWarning($"Menu should only have a single preference of name {preference.name}");
+            }
+        }
     }
-
-    //private void OnValidate()
-    //{
-    //    float height = _preferencePrefab.GetComponent<RectTransform>().rect.height;
-    //    float totalHeight = 0;
-
-    //    for (int i = 0; i < _preferences.Count; i++)
-    //    {
-    //        totalHeight += height;
-    //        if (totalHeight > MaxPreferencesHeight)
-    //        {
-    //            _preferences.RemoveRange(i, _preferences.Count - i);
-    //            Debug.LogWarning("Max preferences reached - adjust preference prefab height to add more preferences");
-    //            break;
-    //        }
-    //    }
-    //}
 }

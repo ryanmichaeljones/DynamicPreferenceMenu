@@ -2011,55 +2011,20 @@ MonoBehaviour:
     defaultValueSlider: 0
     minValue: 0
     maxValue: 0
-  - name: Slider 1
-    type: 2
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 8
-    minValue: 0
-    maxValue: 20
   - name: Input Field 1
     type: 1
-    defaultValueToggle: 0
-    defaultValueInputField: hello
+    defaultValueToggle: 1
+    defaultValueInputField: hello world
     defaultValueSlider: 0
     minValue: 0
     maxValue: 0
-  - name: Input Field 2
+  - name: Input Field 1
     type: 1
-    defaultValueToggle: 0
-    defaultValueInputField: world
+    defaultValueToggle: 1
+    defaultValueInputField: hello world
     defaultValueSlider: 0
     minValue: 0
     maxValue: 0
-  - name: Slider 2
-    type: 2
-    defaultValueToggle: 0
-    defaultValueInputField: world
-    defaultValueSlider: 22
-    minValue: 0
-    maxValue: 25
-  - name: Toggle 2
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: world
-    defaultValueSlider: 22
-    minValue: 0
-    maxValue: 25
-  - name: Toggle 3
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: world
-    defaultValueSlider: 22
-    minValue: 0
-    maxValue: 25
-  - name: Slider 3
-    type: 2
-    defaultValueToggle: 0
-    defaultValueInputField: world
-    defaultValueSlider: 43
-    minValue: 40
-    maxValue: 60
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}
   _togglePrefab: {fileID: 2128086013470967234, guid: 460cd5656e3e81b4ba657dd4a7630930, type: 3}
   _inputFieldPrefab: {fileID: 6197293274691893518, guid: 5aa016beaadb3f14ca32069abfce446d, type: 3}
