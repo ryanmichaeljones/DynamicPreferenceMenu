@@ -2004,34 +2004,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preferences:
-  - name: Toggle 1
+  - name: Placeholder 1
     type: 0
-    defaultValueToggle: 1
+    defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 0
     minValue: 0
-    maxValue: 0
-  - name: Input Field 1
-    type: 1
-    defaultValueToggle: 1
-    defaultValueInputField: hello world
+    maxValue: 100
+  - name: Placeholder 2
+    type: 0
+    defaultValueToggle: 0
+    defaultValueInputField: 
     defaultValueSlider: 0
     minValue: 0
-    maxValue: 0
-  - name: Input Field 1
-    type: 1
-    defaultValueToggle: 1
-    defaultValueInputField: hello world
+    maxValue: 100
+  - name: Placeholder 3
+    type: 0
+    defaultValueToggle: 0
+    defaultValueInputField: 
     defaultValueSlider: 0
     minValue: 0
-    maxValue: 0
+    maxValue: 100
+  - name: Placeholder 4
+    type: 0
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Placeholder 5
+    type: 0
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Placeholder 6
+    type: 0
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Placeholder 7
+    type: 2
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 23
+    minValue: 0
+    maxValue: 100
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}
   _togglePrefab: {fileID: 2128086013470967234, guid: 460cd5656e3e81b4ba657dd4a7630930, type: 3}
   _inputFieldPrefab: {fileID: 6197293274691893518, guid: 5aa016beaadb3f14ca32069abfce446d, type: 3}
   _sliderPrefab: {fileID: 7287814695271638890, guid: 12a77fead3b90a140b98d96d17bf1f42, type: 3}
-  _confirmButton: {fileID: 1281883738}
-  _clearButton: {fileID: 383925329}
-  _closeButton: {fileID: 1997366020}
 --- !u!1 &1997366018
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class ShowSliderValue : MonoBehaviour
 {
-    private Slider slider;
-    private TMP_Text valueText;
+    private Slider _slider;
+    private TMP_Text _valueText;
 
     void Start()
     {
-        slider = GetComponent<Slider>();
-        valueText = GetComponentInChildren<TMP_Text>();
+        _slider = GetComponent<Slider>();
+        _valueText = GetComponentInChildren<TMP_Text>();
 
-        UpdateValueText(slider.value);
-        slider.onValueChanged.AddListener(UpdateValueText);
+        UpdateValueText(_slider.value);
+        _slider.onValueChanged.AddListener(UpdateValueText);
     }
 
-    private void UpdateValueText(float value) => valueText.text = value.ToString();
+    private void UpdateValueText(float value) => _valueText.text = value.ToString();
 }

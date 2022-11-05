@@ -1,10 +1,9 @@
 using Assets;
-using Unity.VisualScripting;
+using System;
 using UnityEditor;
 using UnityEngine;
-using static MenuManager;
 
-[CustomEditor(typeof(MenuPref)), CanEditMultipleObjects]
+[CustomEditor(typeof(MenuPreference)), CanEditMultipleObjects]
 public class MenuPrefEditor : Editor
 {
     public SerializedProperty typeProperty;
@@ -32,23 +31,21 @@ public class MenuPrefEditor : Editor
 
         EditorGUILayout.PropertyField(typeProperty);
 
-        PrefType type = (PrefType)typeProperty.enumValueIndex;
-
-        switch (type)
+        switch ((PreferenceType)typeProperty.enumValueIndex)
         {
-            case PrefType.Toggle:
+            case PreferenceType.Toggle:
                 EditorGUILayout.PropertyField(defaultValueToggleProperty, new GUIContent("defaultValueToggle"));
                 break;
-            case PrefType.InputField:
+            case PreferenceType.InputField:
                 EditorGUILayout.PropertyField(defaultValueInputFieldProperty, new GUIContent("defaultValueInputField"));
                 break;
-            case PrefType.Slider:
+            case PreferenceType.Slider:
                 EditorGUILayout.PropertyField(defaultValueSliderProperty, new GUIContent("defaultValueSlider"));
                 EditorGUILayout.PropertyField(minValueProperty, new GUIContent("minValue"));
                 EditorGUILayout.PropertyField(maxValueProperty, new GUIContent("maxValue"));
                 break;
             default:
-                break;
+                throw new ArgumentException("Preference type is invalid or not implemented");
         }
 
         serializedObject.ApplyModifiedProperties();

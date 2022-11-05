@@ -2,133 +2,73 @@ using Assets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//add menu groupings to seperate preferences based on usage
+//add "Are you sure you want to reset preferences to default?" popup
+
 public class MenuManager : MonoBehaviour
 {
-    [Serializable]
-    public class MenuPref
-    {
-        public string name;
-        public PrefType type;
-        private GameObject _pref;
-
-        public bool defaultValueToggle;
-        public string defaultValueInputField;
-        public int defaultValueSlider;
-
-        public int minValue = 0;
-        public int maxValue = 100;
-
-        public void Create(GameObject prefab, Transform parent, float offset)
-        {
-            _pref = Instantiate(prefab, parent);
-            Vector3 position = _pref.GetComponent<RectTransform>().anchoredPosition;
-            _pref.GetComponent<RectTransform>().anchoredPosition = new Vector3(position.x, position.y - offset);
-
-            _pref.name = $"MenuPref: {name}";
-            _pref.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "NameText").text = name;
-        }
-
-        public void AddPref(GameObject prefab)
-        {
-            Transform parent = _pref.GetComponentsInChildren<RectTransform>().Single(rt => rt.name == "Pref").transform;
-            Instantiate(prefab, parent);
-
-            LoadDefaultValues();
-        }
-
-        private void LoadDefaultValues()
-        {
-            switch (type)
-            {
-                case PrefType.Toggle:
-                    Toggle toggle = _pref.GetComponentInChildren<Toggle>();
-                    toggle.isOn = defaultValueToggle;
-                    break;
-                case PrefType.InputField:
-                    TMP_InputField inputField = _pref.GetComponentInChildren<TMP_InputField>();
-                    inputField.text = defaultValueInputField;
-                    break;
-                case PrefType.Slider:
-                    Slider slider = _pref.GetComponentInChildren<Slider>();
-                    slider.value = defaultValueSlider;
-                    slider.minValue = minValue;
-                    slider.maxValue = maxValue;
-                    break;
-                default:
-                    throw new ArgumentException("Pref type is invalid or not implemented");
-            }
-        }
-
-        public string GetPrefValue() => type switch
-        {
-            PrefType.Toggle => _pref.GetComponentInChildren<Toggle>().isOn.ToString(),
-            PrefType.InputField => _pref.GetComponentInChildren<TMP_InputField>().text,
-            PrefType.Slider => _pref.GetComponentInChildren<Slider>().value.ToString(),
-            _ => throw new ArgumentException("Pref type is invalid or not implemented"),
-        };
-
-        public void LoadPrefValue()
-        {
-            if (PlayerPrefs.HasKey(name))
-            {
-                switch (type)
-                {
-                    case PrefType.Toggle:
-                        _pref.GetComponentInChildren<Toggle>().isOn = bool.TryParse(PlayerPrefs.GetString(name), out bool isOn) && isOn;
-                        break;
-                    case PrefType.InputField:
-                        _pref.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(name);
-                        break;
-                    case PrefType.Slider:
-                        _pref.GetComponentInChildren<Slider>().value = float.TryParse(PlayerPrefs.GetString(name), out float value) ? value : default;
-                        break;
-                    default:
-                        throw new ArgumentException("Pref type is invalid or not implemented");
-                }
-            }
-        }
-    }
-
-    [SerializeField] private List<MenuPref> _preferences;
+    [SerializeField] private List<MenuPreference> _preferences;
     [SerializeField] private GameObject _preferencePrefab;
     [SerializeField] private GameObject _togglePrefab;
     [SerializeField] private GameObject _inputFieldPrefab;
     [SerializeField] private GameObject _sliderPrefab;
 
-    [SerializeField] private Button _confirmButton;
-    [SerializeField] private Button _clearButton;
-    [SerializeField] private Button _closeButton;
-
     private void Start()
     {
-        InitPreferences();
         InitEventListeners();
+        InitPreferences();
     }
 
     private void InitEventListeners()
     {
-        _confirmButton.onClick.AddListener(SavePreferences);
-        _clearButton.onClick.AddListener(ClearPreferences);
+        transform.Find("ConfirmButton").GetComponent<Button>().onClick.AddListener(SavePreferences);
+        transform.Find("ClearButton").GetComponent<Button>().onClick.AddListener(ClearPreferences);
     }
 
-    private void LoadPreferences()
+    private void InitPreferences()
     {
-        foreach (MenuPref pref in _preferences)
+        RectTransform content = transform.Find("Scroll View").GetComponent<ScrollRect>().content;
+        float offset = _preferencePrefab.GetComponent<RectTransform>().rect.height;
+
+        for (int i = 0; i < _preferences.Count; i++)
         {
-            pref.LoadPrefValue();
+            MenuPreference preference = _preferences[i];
+            GameObject prefab = GetPrefabByType(preference.type);
+            preference.Create(_preferencePrefab, content, (i * offset) - 70);
+            preference.AddPreferencePrefab(prefab);
+        }
+
+        SetContentSize(content, offset);
+        LoadPreferenceValues();
+    }
+
+    private GameObject GetPrefabByType(PreferenceType type) => type switch
+    {
+        PreferenceType.Toggle => _togglePrefab,
+        PreferenceType.InputField => _inputFieldPrefab,
+        PreferenceType.Slider => _sliderPrefab,
+        _ => throw new ArgumentException("Preference type is invalid or not implemented"),
+    };
+
+    private void SetContentSize(RectTransform content, float offset) => content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, offset * _preferences.Count);
+
+    private void LoadPreferenceValues()
+    {
+        foreach (MenuPreference preference in _preferences)
+        {
+            preference.LoadPreferenceValue();
         }
     }
 
     private void SavePreferences()
     {
-        foreach (MenuPref pref in _preferences)
+        foreach (MenuPreference preference in _preferences)
         {
-            PlayerPrefs.SetString(pref.name, pref.GetPrefValue());
+            PlayerPrefs.SetString(preference.name, preference.GetPreferenceValue());
         }
 
         ReloadScene();
@@ -136,11 +76,9 @@ public class MenuManager : MonoBehaviour
 
     private void ClearPreferences()
     {
-        //add "Are you sure you want to reset preferences to default?" popup
-
-        foreach (MenuPref pref in _preferences)
+        foreach (MenuPreference preference in _preferences)
         {
-            PlayerPrefs.DeleteKey(pref.name);
+            PlayerPrefs.DeleteKey(preference.name);
         }
 
         ReloadScene();
@@ -148,42 +86,12 @@ public class MenuManager : MonoBehaviour
 
     private static void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-    private void InitPreferences()
-    {
-        Transform contentTransform = transform.Find("Scroll View").Find("Viewport").Find("Content");
-
-        float offset = _preferencePrefab.GetComponent<RectTransform>().rect.height;
-
-        for (int i = 0; i < _preferences.Count; i++)
-        {
-            MenuPref pref = _preferences[i];
-            pref.Create(_preferencePrefab, contentTransform, (i * offset) - 70);
-
-            GameObject prefab = GetPrefabByPrefType(_preferences[i].type);
-            pref.AddPref(prefab);
-        }
-
-        contentTransform.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, offset * _preferences.Count);
-
-        LoadPreferences();
-    }
-
-    private GameObject GetPrefabByPrefType(PrefType type) => type switch
-    {
-        PrefType.Toggle => _togglePrefab,
-        PrefType.InputField => _inputFieldPrefab,
-        PrefType.Slider => _sliderPrefab,
-        _ => throw new ArgumentException("Pref type is invalid or not implemented"),
-    };
-
     private void OnValidate()
     {
-        foreach (var preference in _preferences)
+        foreach (MenuPreference preference in _preferences
+            .Where(preference => _preferences.Count(p => p.name == preference.name) > 1))
         {
-            if (_preferences.Count(p => p.name == preference.name) > 1)
-            {
-                Debug.LogWarning($"Menu should only have a single preference of name {preference.name}");
-            }
+            Debug.LogWarning($"Menu should only have a single preference of name {preference.name}");
         }
     }
 }
