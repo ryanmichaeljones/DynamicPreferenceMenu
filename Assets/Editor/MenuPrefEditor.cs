@@ -13,6 +13,8 @@ public class MenuPrefEditor : Editor
     public SerializedProperty defaultValueInputFieldProperty;
     public SerializedProperty defaultValueSliderProperty;
 
+    public SerializedProperty groupProperty;
+
     private void OnEnable()
     {
         typeProperty = serializedObject.FindProperty("type");
@@ -21,6 +23,8 @@ public class MenuPrefEditor : Editor
         defaultValueToggleProperty = serializedObject.FindProperty("DefaultValueToggle");
         defaultValueInputFieldProperty = serializedObject.FindProperty("DefaultValueInputField");
         defaultValueSliderProperty = serializedObject.FindProperty("DefaultValueSlider");
+
+        groupProperty = serializedObject.FindProperty("group");
     }
 
     public override void OnInspectorGUI()
