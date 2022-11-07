@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 //add menu groupings to seperate preferences based on usage
 //add "Are you sure you want to reset preferences to default?" popup
+//add dropdown preference type
 
 public class MenuManager : MonoBehaviour
 {

@@ -190,8 +190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190328
-  m_fontColor: {r: 0.9716981, g: 0, b: 0, a: 1}
+    rgba: 4280493055
+  m_fontColor: {r: 1, g: 0.13679248, b: 0.13679248, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -565,14 +565,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39607844}
+  m_Color: {r: 0.21176472, g: 0.21176472, b: 0.21176472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -785,8 +785,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 33
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.34509805, g: 0.34509805, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1859,13 +1859,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.8
+  m_fontSize: 26
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 12
-  m_fontSizeMax: 36
-  m_fontStyle: 33
+  m_fontSizeMax: 26
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
@@ -1951,7 +1951,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 520}
+  m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977029008
 MonoBehaviour:
@@ -1966,7 +1966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.54509807}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2004,53 +2004,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preferences:
-  - name: Placeholder 1
+  - name: Use Fixed Seed
     type: 0
+    group: 2147483647
     defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 0
     minValue: 0
     maxValue: 100
-  - name: Placeholder 2
+  - name: Seed
+    type: 1
+    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 123
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Use Distribution
     type: 0
+    group: 2147483647
     defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 0
     minValue: 0
     maxValue: 100
-  - name: Placeholder 3
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Placeholder 4
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Placeholder 5
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Placeholder 6
-    type: 0
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Placeholder 7
+  - name: Distribution Players
     type: 2
+    group: 2147483647
     defaultValueToggle: 0
     defaultValueInputField: 
-    defaultValueSlider: 23
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Initial Balance
+    type: 1
+    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Stakes
+    type: 1
+    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 1,2,5,10,15
+    defaultValueSlider: 0
+    minValue: 0
+    maxValue: 100
+  - name: Volume
+    type: 2
+    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 100
+    minValue: 0
+    maxValue: 100
+  - name: Prototype Version
+    type: 1
+    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 100
     minValue: 0
     maxValue: 100
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}

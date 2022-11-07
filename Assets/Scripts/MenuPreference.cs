@@ -22,7 +22,7 @@ public class MenuPreference
     public void Create(GameObject prefab, Transform parent, float offset)
     {
         _preference = GameObject.Instantiate(prefab, parent);
-        _preference.name = $"MenuPref: {name}";
+        _preference.name = $"Preference: {name}";
         _preference.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "NameText").text = name;
 
         SetPreferencePosition(offset);
