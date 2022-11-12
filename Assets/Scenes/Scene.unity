@@ -503,9 +503,9 @@ RectTransform:
   m_Father: {fileID: 1977029007}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 330, y: 35}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -70, y: 35}
   m_SizeDelta: {x: 100, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383925329
@@ -2004,74 +2004,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preferences:
-  - name: Use Fixed Seed
+  - name: Toggle 1
     type: 0
-    group: 2147483647
-    defaultValueToggle: 0
+    defaultValueToggle: 1
     defaultValueInputField: 
     defaultValueSlider: 0
+    defaultValueDropdown: 
     minValue: 0
     maxValue: 100
-  - name: Seed
-    type: 1
-    group: 2147483647
-    defaultValueToggle: 0
-    defaultValueInputField: 123
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Use Distribution
+    dropdownOptions: []
+  - name: Toggle 2
     type: 0
-    group: 2147483647
     defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 0
+    defaultValueDropdown: 
     minValue: 0
     maxValue: 100
-  - name: Distribution Players
-    type: 2
-    group: 2147483647
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    minValue: 0
-    maxValue: 100
-  - name: Initial Balance
+    dropdownOptions: []
+  - name: Input Field 1
     type: 1
-    group: 2147483647
     defaultValueToggle: 0
     defaultValueInputField: 10000
     defaultValueSlider: 0
+    defaultValueDropdown: 
     minValue: 0
     maxValue: 100
-  - name: Stakes
+    dropdownOptions: []
+  - name: Input Field 2
     type: 1
-    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 123
+    defaultValueSlider: 0
+    defaultValueDropdown: 
+    minValue: 0
+    maxValue: 100
+    dropdownOptions: []
+  - name: Input Field 3
+    type: 1
     defaultValueToggle: 0
     defaultValueInputField: 1,2,5,10,15
     defaultValueSlider: 0
+    defaultValueDropdown: 
     minValue: 0
     maxValue: 100
-  - name: Volume
+    dropdownOptions: []
+  - name: Slider 1
     type: 2
-    group: 2147483647
+    defaultValueToggle: 0
+    defaultValueInputField: 
+    defaultValueSlider: 14
+    defaultValueDropdown: 
+    minValue: 0
+    maxValue: 20
+    dropdownOptions: []
+  - name: Slider 2
+    type: 2
     defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 100
+    defaultValueDropdown: 
     minValue: 0
     maxValue: 100
-  - name: Prototype Version
-    type: 1
-    group: 2147483647
+    dropdownOptions: []
+  - name: Dropdown 1
+    type: 3
     defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 100
+    defaultValueDropdown: Integer
     minValue: 0
     maxValue: 100
+    dropdownOptions:
+    - Integer
+    - Float
+    - Double
+    - Long
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}
   _togglePrefab: {fileID: 2128086013470967234, guid: 460cd5656e3e81b4ba657dd4a7630930, type: 3}
   _inputFieldPrefab: {fileID: 6197293274691893518, guid: 5aa016beaadb3f14ca32069abfce446d, type: 3}
   _sliderPrefab: {fileID: 7287814695271638890, guid: 12a77fead3b90a140b98d96d17bf1f42, type: 3}
+  _dropdownPrefab: {fileID: 3832559471138651185, guid: 76588ae31981c99419ce03d26206e7e2, type: 3}
 --- !u!1 &1997366018
 GameObject:
   m_ObjectHideFlags: 0

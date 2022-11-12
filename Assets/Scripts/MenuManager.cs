@@ -6,9 +6,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-//add menu groupings to seperate preferences based on usage
+//add menu groupings to seperate preferences based on usage, possibly with a border and label
 //add "Are you sure you want to reset preferences to default?" popup
-//add dropdown preference type
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _togglePrefab;
     [SerializeField] private GameObject _inputFieldPrefab;
     [SerializeField] private GameObject _sliderPrefab;
+    [SerializeField] private GameObject _dropdownPrefab;
 
     private void Start()
     {
@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
         PreferenceType.Toggle => _togglePrefab,
         PreferenceType.InputField => _inputFieldPrefab,
         PreferenceType.Slider => _sliderPrefab,
+        PreferenceType.Dropdown => _dropdownPrefab,
         _ => throw new ArgumentException("Preference type is invalid or not implemented"),
     };
 

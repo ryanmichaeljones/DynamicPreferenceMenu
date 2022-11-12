@@ -6,12 +6,14 @@ using UnityEngine;
 [CustomEditor(typeof(MenuPreference)), CanEditMultipleObjects]
 public class MenuPrefEditor : Editor
 {
-    public SerializedProperty typeProperty;
-    public SerializedProperty minValueProperty;
-    public SerializedProperty maxValueProperty;
-    public SerializedProperty defaultValueToggleProperty;
-    public SerializedProperty defaultValueInputFieldProperty;
-    public SerializedProperty defaultValueSliderProperty;
+    private SerializedProperty typeProperty;
+    private SerializedProperty minValueProperty;
+    private SerializedProperty maxValueProperty;
+    private SerializedProperty defaultValueToggleProperty;
+    private SerializedProperty defaultValueInputFieldProperty;
+    private SerializedProperty defaultValueSliderProperty;
+    private SerializedProperty defaultValueDropdownProperty;
+    private SerializedProperty dropdownOptionsProperty;
 
     public SerializedProperty groupProperty;
 
@@ -23,6 +25,8 @@ public class MenuPrefEditor : Editor
         defaultValueToggleProperty = serializedObject.FindProperty("DefaultValueToggle");
         defaultValueInputFieldProperty = serializedObject.FindProperty("DefaultValueInputField");
         defaultValueSliderProperty = serializedObject.FindProperty("DefaultValueSlider");
+        defaultValueDropdownProperty = serializedObject.FindProperty("DefaultValueDropdown");
+        dropdownOptionsProperty = serializedObject.FindProperty("dropdownOptions");
 
         groupProperty = serializedObject.FindProperty("group");
     }
@@ -47,6 +51,10 @@ public class MenuPrefEditor : Editor
                 EditorGUILayout.PropertyField(defaultValueSliderProperty, new GUIContent("defaultValueSlider"));
                 EditorGUILayout.PropertyField(minValueProperty, new GUIContent("minValue"));
                 EditorGUILayout.PropertyField(maxValueProperty, new GUIContent("maxValue"));
+                break;
+            case PreferenceType.Dropdown:
+                EditorGUILayout.PropertyField(dropdownOptionsProperty, new GUIContent("dropdownOptions"));
+                EditorGUILayout.PropertyField(defaultValueDropdownProperty, new GUIContent("defaultValueDropdown"));
                 break;
             default:
                 throw new ArgumentException("Preference type is invalid or not implemented");

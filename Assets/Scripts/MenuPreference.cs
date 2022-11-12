@@ -1,5 +1,6 @@
 ﻿using Assets;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -12,12 +13,17 @@ public class MenuPreference
     public PreferenceType type;
     private GameObject _preference;
 
+    //add MenuProperties class to wrap
+
     public bool defaultValueToggle;
     public string defaultValueInputField;
     public int defaultValueSlider;
+    public string defaultValueDropdown;
 
     public int minValue = 0;
     public int maxValue = 100;
+
+    public List<string> dropdownOptions;
 
     public void Create(GameObject prefab, Transform parent, float offset)
     {
@@ -60,6 +66,10 @@ public class MenuPreference
                 slider.minValue = minValue;
                 slider.maxValue = maxValue;
                 break;
+            case PreferenceType.Dropdown:
+                TMP_Dropdown dropdown = _preference.GetComponentInChildren<TMP_Dropdown>();
+                dropdown.AddOptions(dropdownOptions);
+                break;
             default:
                 throw new ArgumentException("Preference type is invalid or not implemented");
         }
@@ -80,6 +90,9 @@ public class MenuPreference
                 case PreferenceType.Slider:
                     _preference.GetComponentInChildren<Slider>().value = float.TryParse(PlayerPrefs.GetString(name), out float value) ? value : default;
                     break;
+                case PreferenceType.Dropdown:
+                    //none
+                    break;
                 default:
                     throw new ArgumentException("Preference type is invalid or not implemented");
             }
@@ -91,6 +104,7 @@ public class MenuPreference
         PreferenceType.Toggle => _preference.GetComponentInChildren<Toggle>().isOn.ToString(),
         PreferenceType.InputField => _preference.GetComponentInChildren<TMP_InputField>().text,
         PreferenceType.Slider => _preference.GetComponentInChildren<Slider>().value.ToString(),
+        PreferenceType.Dropdown => _preference.GetComponentInChildren<TMP_Dropdown>().value.ToString(),
         _ => throw new ArgumentException("Preference type is invalid or not implemented"),
     };
 }
