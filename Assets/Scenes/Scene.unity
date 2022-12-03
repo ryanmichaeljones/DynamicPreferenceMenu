@@ -2016,6 +2016,49 @@ MonoBehaviour:
     dropdownOptions: []
   - name: Input Field 1
     type: 1
+    id: 9cefe584-f854-4eb5-b843-77846d0d7246
+    defaultValueToggle: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 0
+    defaultValueDropdown: 
+    minValue: 0
+    maxValue: 100
+    dropdownOptions: []
+  - name: Slider 1
+    type: 2
+    id: 7aeed71a-d38a-4e6d-9d66-69e800b9adf4
+    defaultValueToggle: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 25
+    defaultValueDropdown: 
+    minValue: 0
+    maxValue: 50
+    dropdownOptions: []
+  - name: Dropdown 1
+    type: 3
+    id: 4be651a6-3b68-44fe-aeaa-6a3f072eb638
+    defaultValueToggle: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 25
+    defaultValueDropdown: Red
+    minValue: 0
+    maxValue: 50
+    dropdownOptions:
+    - Red
+    - Green
+    - Blue
+  - name: Toggle 2
+    type: 0
+    id: 7e5ab598-34ac-4623-bdf1-05f95aec575c
+    defaultValueToggle: 1
+    defaultValueInputField: 
+    defaultValueSlider: 0
+    defaultValueDropdown: 
+    minValue: 0
+    maxValue: 100
+    dropdownOptions: []
+  - name: Input Field 2
+    type: 1
     id: 0e04a9d0-b78f-4a03-90e3-49ba612a7436
     defaultValueToggle: 0
     defaultValueInputField: 10000
@@ -2024,16 +2067,29 @@ MonoBehaviour:
     minValue: 0
     maxValue: 100
     dropdownOptions: []
-  - name: Input Field 1
-    type: 1
-    id: 73248395-beaf-48cf-9828-5ebc3769f8b6
+  - name: Slider 2
+    type: 2
+    id: 04eaae39-bb5d-4eb9-be7e-177d2a6cad96
     defaultValueToggle: 0
-    defaultValueInputField: Value
-    defaultValueSlider: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 25
     defaultValueDropdown: 
     minValue: 0
-    maxValue: 100
+    maxValue: 50
     dropdownOptions: []
+  - name: Dropdown 2
+    type: 3
+    id: 15426875-2f06-455e-89ba-57ce5bb2f70a
+    defaultValueToggle: 0
+    defaultValueInputField: 10000
+    defaultValueSlider: 25
+    defaultValueDropdown: Red
+    minValue: 0
+    maxValue: 50
+    dropdownOptions:
+    - Red
+    - Green
+    - Blue
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}
   _togglePrefab: {fileID: 2128086013470967234, guid: 460cd5656e3e81b4ba657dd4a7630930, type: 3}
   _inputFieldPrefab: {fileID: 6197293274691893518, guid: 5aa016beaadb3f14ca32069abfce446d, type: 3}

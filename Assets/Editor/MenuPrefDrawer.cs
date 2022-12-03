@@ -95,7 +95,7 @@ namespace Assets.Editor
                         string[] array = GetSerializedPropertyArray(property, "dropdownOptions");
                         int currentIndex = Array.IndexOf(array, property.FindPropertyRelative("defaultValueDropdown").stringValue);
                         int newIndex = EditorGUI.Popup(GetPropertyRect(position, propertyFieldCount++), "Default Value", currentIndex, array);
-                        property.FindPropertyRelative("defaultValueDropdown").stringValue = array[newIndex != -1 ? newIndex : 0];
+                        property.FindPropertyRelative("defaultValueDropdown").stringValue = newIndex != -1 ? array[newIndex] : string.Empty;
 
                         EditorGUI.PropertyField(GetPropertyRect(position, propertyFieldCount++), property.FindPropertyRelative("dropdownOptions"), new GUIContent("Dropdown Options"));
                         break;
