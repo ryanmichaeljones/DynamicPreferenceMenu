@@ -35,6 +35,8 @@ namespace Assets.Editor
         {
             EditorGUI.BeginProperty(position, label, property);
 
+            GeneratePreferenceId(property);
+
             int propertyFieldCount = 0;
 
             property.isExpanded = EditorGUI.Foldout(GetPropertyRect(position, propertyFieldCount++), property.isExpanded, label);
@@ -105,6 +107,16 @@ namespace Assets.Editor
             }
 
             EditorGUI.EndProperty();
+        }
+
+        private static void GeneratePreferenceId(SerializedProperty property)
+        {
+            SerializedProperty id = property.FindPropertyRelative("id");
+            if (id.stringValue == string.Empty)
+            {
+                id.stringValue = Guid.NewGuid().ToString();
+                Debug.Log($"Generated id for new menu preference '{property.FindPropertyRelative("name").stringValue}'\n{id.stringValue}");
+            }
         }
 
         private static string[] GetSerializedPropertyArray(SerializedProperty property, string relativePropertyPath)

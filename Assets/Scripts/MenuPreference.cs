@@ -11,9 +11,8 @@ public class MenuPreference
 {
     public string name;
     public PreferenceType type;
+    public string id;
     private GameObject _preference;
-
-    //add MenuProperties class to wrap
 
     public bool defaultValueToggle;
     public string defaultValueInputField;
@@ -77,18 +76,18 @@ public class MenuPreference
 
     public void LoadPreferenceValue()
     {
-        if (PlayerPrefs.HasKey(name))
+        if (PlayerPrefs.HasKey(id))
         {
             switch (type)
             {
                 case PreferenceType.Toggle:
-                    _preference.GetComponentInChildren<Toggle>().isOn = bool.TryParse(PlayerPrefs.GetString(name), out bool isOn) && isOn;
+                    _preference.GetComponentInChildren<Toggle>().isOn = bool.TryParse(PlayerPrefs.GetString(id), out bool isOn) && isOn;
                     break;
                 case PreferenceType.InputField:
-                    _preference.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(name);
+                    _preference.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(id);
                     break;
                 case PreferenceType.Slider:
-                    _preference.GetComponentInChildren<Slider>().value = float.TryParse(PlayerPrefs.GetString(name), out float value) ? value : default;
+                    _preference.GetComponentInChildren<Slider>().value = float.TryParse(PlayerPrefs.GetString(id), out float value) ? value : default;
                     break;
                 case PreferenceType.Dropdown:
                     //none

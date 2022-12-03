@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2105472551}
   m_HandleRect: {fileID: 2105472550}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2006,16 +2006,8 @@ MonoBehaviour:
   _preferences:
   - name: Toggle 1
     type: 0
+    id: eb36c294-1a05-438a-b4cc-4d033a66b8db
     defaultValueToggle: 1
-    defaultValueInputField: 
-    defaultValueSlider: 0
-    defaultValueDropdown: 
-    minValue: 0
-    maxValue: 100
-    dropdownOptions: []
-  - name: Toggle 2
-    type: 0
-    defaultValueToggle: 0
     defaultValueInputField: 
     defaultValueSlider: 0
     defaultValueDropdown: 
@@ -2024,6 +2016,7 @@ MonoBehaviour:
     dropdownOptions: []
   - name: Input Field 1
     type: 1
+    id: 0e04a9d0-b78f-4a03-90e3-49ba612a7436
     defaultValueToggle: 0
     defaultValueInputField: 10000
     defaultValueSlider: 0
@@ -2031,55 +2024,16 @@ MonoBehaviour:
     minValue: 0
     maxValue: 100
     dropdownOptions: []
-  - name: Input Field 2
+  - name: Input Field 1
     type: 1
+    id: 73248395-beaf-48cf-9828-5ebc3769f8b6
     defaultValueToggle: 0
-    defaultValueInputField: 123
+    defaultValueInputField: Value
     defaultValueSlider: 0
     defaultValueDropdown: 
     minValue: 0
     maxValue: 100
     dropdownOptions: []
-  - name: Input Field 3
-    type: 1
-    defaultValueToggle: 0
-    defaultValueInputField: 1,2,5,10,15
-    defaultValueSlider: 0
-    defaultValueDropdown: 
-    minValue: 0
-    maxValue: 100
-    dropdownOptions: []
-  - name: Slider 1
-    type: 2
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 14
-    defaultValueDropdown: 
-    minValue: 0
-    maxValue: 20
-    dropdownOptions: []
-  - name: Slider 2
-    type: 2
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 100
-    defaultValueDropdown: 
-    minValue: 0
-    maxValue: 100
-    dropdownOptions: []
-  - name: Dropdown 1
-    type: 3
-    defaultValueToggle: 0
-    defaultValueInputField: 
-    defaultValueSlider: 100
-    defaultValueDropdown: Integer
-    minValue: 0
-    maxValue: 100
-    dropdownOptions:
-    - Integer
-    - Float
-    - Double
-    - Long
   _preferencePrefab: {fileID: 5946904322835320696, guid: 5b7111fb9f6fb904f975fb9eceb198c8, type: 3}
   _togglePrefab: {fileID: 2128086013470967234, guid: 460cd5656e3e81b4ba657dd4a7630930, type: 3}
   _inputFieldPrefab: {fileID: 6197293274691893518, guid: 5aa016beaadb3f14ca32069abfce446d, type: 3}

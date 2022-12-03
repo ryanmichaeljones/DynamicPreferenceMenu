@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //add menu groupings to seperate preferences based on usage, possibly with a border and label
-//add "Are you sure you want to reset preferences to default?" popup
 
 public class MenuManager : MonoBehaviour
 {
@@ -70,7 +69,7 @@ public class MenuManager : MonoBehaviour
     {
         foreach (MenuPreference preference in _preferences)
         {
-            PlayerPrefs.SetString(preference.name, preference.GetPreferenceValue());
+            PlayerPrefs.SetString(preference.id, preference.GetPreferenceValue());
         }
 
         ReloadScene();
@@ -80,7 +79,7 @@ public class MenuManager : MonoBehaviour
     {
         foreach (MenuPreference preference in _preferences)
         {
-            PlayerPrefs.DeleteKey(preference.name);
+            PlayerPrefs.DeleteKey(preference.id);
         }
 
         ReloadScene();
@@ -90,10 +89,15 @@ public class MenuManager : MonoBehaviour
 
     private void OnValidate()
     {
-        foreach (MenuPreference preference in _preferences
-            .Where(preference => _preferences.Count(p => p.name == preference.name) > 1))
+        foreach (string id in GetDuplicatePreferenceIds())
         {
-            Debug.LogWarning($"Menu should only have a single preference of name {preference.name}");
+            _preferences.Last(p => p.id == id).id = string.Empty;
         }
     }
+
+    private IEnumerable<string> GetDuplicatePreferenceIds() => _preferences
+        .Select(p => p.id)
+        .Distinct()
+        .Where(id => _preferences
+        .Count(p => p.id == id) > 1);
 }
