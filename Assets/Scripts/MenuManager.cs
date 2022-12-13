@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
         {
             MenuPreference preference = _preferences[i];
             GameObject prefab = GetPrefabByType(preference.type);
-            preference.Create(_preferencePrefab, content, (i * offset) - 70);
+            preference.Create(_preferencePrefab, content, (i * offset) - 75);
             preference.AddPreferencePrefab(prefab);
         }
 
