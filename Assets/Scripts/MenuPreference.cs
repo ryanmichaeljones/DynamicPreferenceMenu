@@ -28,7 +28,10 @@ public class MenuPreference
     {
         _preference = GameObject.Instantiate(prefab, parent);
         _preference.name = $"Preference: {name}";
-        _preference.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "NameText").text = name;
+        TMP_Text nameText = _preference.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "NameText");
+        float width = GameObject.Find("MenuPanel").GetComponent<RectTransform>().sizeDelta.x / 2;
+        nameText.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+        nameText.text = name;
 
         SetPreferencePosition(offset);
     }
@@ -43,6 +46,8 @@ public class MenuPreference
     {
         Transform parent = _preference.transform.Find("Pref");
         GameObject.Instantiate(prefab, parent);
+        float width = GameObject.Find("MenuPanel").GetComponent<RectTransform>().sizeDelta.x / 2;
+        parent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
 
         LoadDefaultValues();
     }
