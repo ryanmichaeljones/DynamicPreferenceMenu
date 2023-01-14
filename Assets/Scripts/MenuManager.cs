@@ -17,6 +17,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _sliderPrefab;
     [SerializeField] private GameObject _dropdownPrefab;
 
+    private const int DefaultContentOffset = 75;
+
     private void Start()
     {
         InitEventListeners();
@@ -38,7 +40,7 @@ public class MenuManager : MonoBehaviour
         {
             MenuPreference preference = _preferences[i];
             GameObject prefab = GetPrefabByType(preference.type);
-            preference.Create(_preferencePrefab, content, (i * offset) - 75);
+            preference.Create(_preferencePrefab, content, (i * offset) - DefaultContentOffset);
             preference.AddPreferencePrefab(prefab);
         }
 
@@ -72,7 +74,7 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetString(preference.id, preference.GetPreferenceValue());
         }
 
-        ReloadScene();
+        ReloadActiveScene();
     }
 
     private void ClearPreferences()
@@ -82,18 +84,21 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.DeleteKey(preference.id);
         }
 
-        ReloadScene();
+        ReloadActiveScene();
     }
 
-    private static void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    private static void ReloadActiveScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private void OnValidate()
     {
         foreach (string id in GetDuplicatePreferenceIds())
         {
-            _preferences.Last(p => p.id == id).id = string.Empty;
+            ClearPreferenceId(id);
         }
     }
+
+    private void ClearPreferenceId(string id) => _preferences
+        .Last(p => p.id == id).id = string.Empty;
 
     private IEnumerable<string> GetDuplicatePreferenceIds() => _preferences
         .Select(p => p.id)

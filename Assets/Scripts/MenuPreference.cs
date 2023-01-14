@@ -28,12 +28,17 @@ public class MenuPreference
     {
         _preference = GameObject.Instantiate(prefab, parent);
         _preference.name = $"Preference: {name}";
+
+        UpdateNameText();
+        SetPreferencePosition(offset);
+    }
+
+    private void UpdateNameText()
+    {
         TMP_Text nameText = _preference.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "NameText");
         float width = GameObject.Find("MenuPanel").GetComponent<RectTransform>().sizeDelta.x / 2;
         nameText.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
         nameText.text = name;
-
-        SetPreferencePosition(offset);
     }
 
     private void SetPreferencePosition(float offset)
