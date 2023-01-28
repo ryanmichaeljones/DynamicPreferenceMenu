@@ -2029,7 +2029,7 @@ MonoBehaviour:
     id: 7aeed71a-d38a-4e6d-9d66-69e800b9adf4
     defaultValueToggle: 0
     defaultValueInputField: 10000
-    defaultValueSlider: 25
+    defaultValueSlider: 50
     defaultValueDropdown: 
     minValue: 0
     maxValue: 50
