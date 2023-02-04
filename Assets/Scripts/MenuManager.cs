@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //add menu groupings to seperate preferences based on usage, possibly with a border and label
+//maybe give preferences tags instead which are used to get player pref value
 
 public class MenuManager : MonoBehaviour
 {
@@ -88,6 +89,9 @@ public class MenuManager : MonoBehaviour
     }
 
     private static void ReloadActiveScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    public string GetPreferenceValue(string name) => _preferences
+        .Find(p => p.name == name).GetPreferenceValue();
 
     private void OnValidate()
     {
